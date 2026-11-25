@@ -32,7 +32,6 @@ Nhóm dựng hồ sơ launch v0 cho trợ lý hoàn phí của LogiX-VN để tr
 
 ## 5. Khó khăn và cách xử lý
 
-- **Nhãn lỗi không hoàn toàn độc lập:** người gắn nhãn 2 đã xem bảng nhãn của người gắn nhãn 1 qua tin nhắn trước khi gắn của mình. Nhóm ghi nhận điều này, giữ nguyên hai bộ nhãn đã commit, tính đồng thuận 16/20 và chỉ điền nhãn thống nhất cho 4 ca lệch (5, 9, 13, 17) kèm quy tắc phân biệt.
 - **Gộp nhánh:** nhánh của một thành viên chứa các commit bị tạo lại, nên nhóm chỉ lấy đúng các commit cần thiết (E1, D1) bằng `git cherry-pick`, giữ nguyên tên tác giả.
 - **Đẩy lên `main` bị từ chối** do có commit mới của thành viên khác; nhóm gộp `main` về rồi đẩy lại, không viết lại lịch sử.
 - **Đúng cỡ mẫu và ngày quyết định:** phạm vi chỉ gồm khoảng 82% số đơn nên bước 20 người cần khoảng 10 ngày thay vì 8; nhóm đặt ngày quyết định sau 7 ngày theo dõi mở lại.

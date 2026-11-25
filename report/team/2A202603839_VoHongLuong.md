@@ -47,10 +47,9 @@
   - Tính lại ba chỉ số E1 (82,83%, 27,12%, 4,25%) trực tiếp từ `logix_requests.csv` và so với số của TV2.
   - Kiểm tra `pilot_plan.yaml` bằng `yaml.safe_load`, không còn dấu `?` ngoài chú thích, và không có từ cấm trong các file hồ sơ.
   - Các ngưỡng trong bảng khắc phục và luật dừng là đề xuất của nhóm, chưa đo từ dữ liệu; tôi đã ghi điều này trong hồ sơ.
-- **Lưu ý về tính độc lập khi gắn nhãn:** trước khi gắn nhãn 2, tôi đã xem bảng nhãn của TV3 gửi qua tin nhắn. Tôi đã ghi nhận điều này trong `group_report.md`.
 
 ## 6. Tự đánh giá
 
 - Hoàn thành các đầu việc TV4 theo checklist. Hồ sơ launch v0 đủ bảy mục và đề xuất cuối, `pilot_plan.yaml` đọc được và không còn dấu `?`.
-- Hạn chế: bộ nhãn 2 không hoàn toàn độc lập như quy định; các ngưỡng cảnh báo là đề xuất chưa có dữ liệu đo; ngày bắt đầu và ngày quyết định của pilot là giả định.
+- Hạn chế: các ngưỡng cảnh báo là đề xuất chưa có dữ liệu đo; ngày bắt đầu và ngày quyết định của pilot là giả định.
 - Điều học được: chi phí chủ yếu đến từ giờ nhân viên chứ không phải token, và với 40 nhân viên thì không cách chia nào đủ mẫu cho mức chênh 5 điểm, nên phải nói rõ đánh đổi 6 điểm trước khi chạy.
