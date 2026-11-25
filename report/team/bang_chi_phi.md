@@ -42,10 +42,10 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 | Khối lượng | Việc thành công mỗi tháng | Chi phí cố định mỗi việc | Chi phí mỗi việc thành công + cố định | So với 12.000 đ |
 | --- | ---: | ---: | ---: | ---: |
-| 45.000 yêu cầu/tháng | ... | ... | ... | ... |
-| Một nửa khối lượng | ... | ... | ... | ... |
+| 45.000 yêu cầu/tháng | 33.750 việc/tháng (simulated) | +1.185 đ (simulated) | 4.599 đ (simulated) | 0,38× (simulated) |
+| Một nửa khối lượng | 16.875 việc/tháng (simulated) | +2.370 đ (simulated) | 5.784 đ (simulated) | 0,48× (simulated) |
 
-- Chi phí cố định có đổi kết luận không? Ở khối lượng nào? ...
+- Chi phí cố định có đổi kết luận không? Ở khối lượng nào? Không. Với chi phí biến đổi 3.414 đ/việc (simulated), tổng chi phí vẫn dưới 12.000 đ/việc ở cả 45.000 và 22.500 yêu cầu/tháng.
 
 ## B1 · Đổi từng yếu tố
 
@@ -65,8 +65,10 @@ So với chi phí gốc A2 là 4.472 đ/việc thành công (simulated). Tỉ l�
 
 ## B2 · Đổi một cặp và xếp hạng
 
-- Giá token gấp đôi cùng lúc tỉ lệ xem lại gấp đôi: ...
-- Xếp hạng ba yếu tố ảnh hưởng mạnh nhất: 1. ... · 2. ... · 3. ...
+- Giá token gấp đôi cùng lúc tỉ lệ xem lại gấp đôi: 6.543 đ (+46,3% so với mức cơ sở 4.472 đ, đều simulated).
+  Hai mức tăng +5,6% (token) và +40,7% (xem lại), đều simulated, cộng trực tiếp vì CPS là tổng chi phí token, tool, xem lại và làm lại chia cho mẫu số cố định là 978 việc thành công.
+- Xếp hạng ba yếu tố ảnh hưởng mạnh nhất: 1. Số ca làm lại (+51,8% / −25,9%, simulated) · 2. Tỉ lệ xem lại (+40,7% / −20,3%, simulated)
+  · 3. Lương nhân viên (+23,1% khi tăng lương 25%, simulated).
 
 ## B3 · Giới hạn chạy lại có thật sự rẻ hơn
 
@@ -82,5 +84,6 @@ Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 đ × số yêu 
 
 ## B4 · Nếu phải xem lại tất cả
 
-- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: ...
-- Kết quả này nói gì về thứ pilot cần học được? ...
+- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: CPS biến đổi với 5 phút/yêu cầu có status=ok là 11.743 đ (0,98×) khi làm lại 9 phút/ca và 12.415 đ (1,03×) khi làm lại 15,3 phút/ca (đều simulated).
+  Mốc 12.414 đ (1,03×) trong hướng dẫn lệch 1 đ so với kết quả làm tròn từ 12.414,79 đ (đều simulated).
+- Kết quả này nói gì về thứ pilot cần học được? Pilot cần đo thời gian xem lại, làm lại và mức giảm tỉ lệ xem lại an toàn. Ngưỡng xem lại hòa vốn (làm tròn) ≤ 5,1 phút/yêu cầu với 9 phút làm lại, hoặc ≤ 4,8 phút với 15,3 phút làm lại (đều simulated).
