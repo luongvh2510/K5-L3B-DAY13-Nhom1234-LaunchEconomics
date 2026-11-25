@@ -35,5 +35,5 @@ Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý 
 
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
-| ... | ... | ... | ... | ... |
-| ... | ... | ... | ... | ... |
+| Số ca làm lại tăng gấp đôi | B1: 6.787 đ/việc thành công, tăng 51,8% so với mốc A2 trên toàn bộ mẫu (simulated). | Tỉ lệ yêu cầu phải làm lại trong nhóm dùng trợ lý vượt 7% trong một tuần. Mốc chạy thử của `noi_dia` và `hang_nang` là 48/982 (4,9%). | Rà 20 trace làm lại để tìm nguyên nhân. Nếu lỗi tập trung ở `hang_nang`, thu hẹp bước tiếp theo về `noi_dia` và kiểm tra lại tỉ lệ sau một tuần. | PM trợ lý hoàn phí |
+| Phải duy trì xem lại thủ công gần như toàn bộ | B4: Xem lại 100% trong phạm vi `noi_dia` và `hang_nang`, với 5 phút xem lại mỗi yêu cầu có lượt `ok`, cho 11.743 đ/việc (0,98× mốc 12.000 đ) nếu làm lại mất 9 phút/ca và 12.415 đ/việc (1,03×) nếu mất 15,3 phút/ca (simulated). | Cuối bước triển khai 25%, hơn 50% yêu cầu có lượt `ok` vẫn cần xem lại. Theo dõi thêm số phút xem lại và làm lại thực tế mỗi tuần. | Giữ quy mô hiện tại và tính lại chi phí với số phút thực tế. Thử giảm xem lại theo từng bước khi tỉ lệ sửa hoặc bỏ gợi ý dưới 15% và chỉ số an toàn đạt ngưỡng pilot. | Trưởng nhóm CSKH |
