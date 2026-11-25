@@ -80,5 +80,6 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 ## B4 · Nếu phải xem lại tất cả
 
-- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: ...
-- Kết quả này nói gì về thứ pilot cần học được? ...
+- Chi phí mỗi việc thành công khi xem lại 100% (`noi_dia` + `hang_nang`), so với 12.000 đ: CPS biến đổi với 5 phút/yêu cầu có status=ok là 11.743 đ (0,98×) khi làm lại 9 phút/ca và 12.415 đ (1,03×) khi làm lại 15,3 phút/ca (đều simulated).
+  Mốc 12.414 đ (1,03×) trong hướng dẫn lệch 1 đ so với kết quả làm tròn từ 12.414,79 đ (đều simulated).
+- Kết quả này nói gì về thứ pilot cần học được? Pilot cần đo thời gian xem lại, làm lại và mức giảm tỉ lệ xem lại an toàn. Ngưỡng xem lại hòa vốn (làm tròn) ≤ 5,1 phút/yêu cầu với 9 phút làm lại, hoặc ≤ 4,8 phút với 15,3 phút làm lại (đều simulated).
