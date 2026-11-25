@@ -6,7 +6,7 @@ Nhóm: Nhom1234 · Lớp: L3B
 
 | Mục | Con số chính | Trạng thái | Người phụ trách |
 | --- | --- | --- | --- |
-| 1 · Chi phí mỗi việc thành công | (chờ A2 từ mo_hinh) | Chưa | PM trợ lý hoàn phí |
+| 1 · Chi phí mỗi việc thành công | 4.472 đ [simulated] = 4.373.585 đ tổng chi phí ÷ 978 việc thành công; gấp khoảng 16,3 lần hoá đơn token + tool chia số yêu cầu (274,7 đ) | Giả lập | PM trợ lý hoàn phí |
 | 2 · Ba yếu tố nhạy nhất | (chờ bảng độ nhạy B1, B2) | Chưa | PM trợ lý hoàn phí |
 | 3 · So với nhân viên tự làm | (chờ A2, A3, A4) | Chưa | Giám đốc vận hành |
 | 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | (chờ E1) | Chưa | Trưởng nhóm CSKH |
