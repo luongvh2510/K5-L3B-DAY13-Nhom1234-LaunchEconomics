@@ -5,7 +5,7 @@
 - Tên nhóm: Nhom1234
 - Lớp: L3B
 - Repo nhóm: `K5-L3B-DAY13-Nhom1234-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: https://github.com/luongvh2510/K5-L3B-DAY13-Nhom1234-LaunchEconomics · nhánh `main` · commit chốt: (điền sau khi push lần cuối)
+- URL repo, nhánh nộp, commit chốt: https://github.com/luongvh2510/K5-L3B-DAY13-Nhom1234-LaunchEconomics · nhánh `main` · commit chốt: `51ec3fb`
 
 ## Thành viên
 
