@@ -11,9 +11,9 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Nguyễn Đức Nhật | 2A202603812 |       |        | Người viết code |
-|   2 | Hồ Anh Tú       | 2A202603811 |       |        | Người kiểm số |
-|   3 | Đoàn Anh Hùng   | 2A202603880 |       |        | Người gắn nhãn 1 |
+|   1 | Nguyễn Đức Nhật | 2A202603812 |       | NguyenDucNhat3006 | Người viết code |
+|   2 | Hồ Anh Tú       | 2A202603811 |       | HoAnhTu245 | Người kiểm số |
+|   3 | Đoàn Anh Hùng   | 2A202603880 | hungdoan772@gmail.com | doananhhung | Người gắn nhãn 1 |
 |   4 | Võ Hồng Lương   | 2A202603839 | 26ai.luongvh@vinuni.edu.vn | luongvh2510 | Người gắn nhãn 2 kiêm giữ hồ sơ |
 
 Bốn vai của lab:

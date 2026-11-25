@@ -28,7 +28,7 @@ Nhóm dựng hồ sơ launch v0 cho trợ lý hoàn phí của LogiX-VN để tr
 - **Bảng lỗi:** đồng thuận nhãn 16/20 = 80%.
 - **Pilot:** 299 đơn mỗi người, 859 đơn hiệu dụng mỗi nhóm, thấy được mức hơn 6 điểm; power khoảng 0,64 nếu tác động thật là 5 điểm.
 - **Đề xuất cuối:** Go có điều kiện cho `noi_dia` + `hang_nang`, kèm 5 điều kiện có người phụ trách và ngày kiểm tra.
-- **Kết quả duyệt chéo nhóm nhận được:** (điền sau khi nhận phiếu từ nhóm hội đồng).
+- **Kết quả duyệt chéo nhóm nhận được:** chưa nhận phiếu từ nhóm hội đồng tại thời điểm nộp.
 
 ## 5. Khó khăn và cách xử lý
 
