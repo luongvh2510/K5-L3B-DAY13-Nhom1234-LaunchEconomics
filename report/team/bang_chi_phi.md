@@ -42,10 +42,10 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 | Khối lượng | Việc thành công mỗi tháng | Chi phí cố định mỗi việc | Chi phí mỗi việc thành công + cố định | So với 12.000 đ |
 | --- | ---: | ---: | ---: | ---: |
-| 45.000 yêu cầu/tháng | ... | ... | ... | ... |
-| Một nửa khối lượng | ... | ... | ... | ... |
+| 45.000 yêu cầu/tháng | 33.750 việc/tháng (simulated) | +1.185 đ (simulated) | 4.599 đ (simulated) | 0,38× (simulated) |
+| Một nửa khối lượng | 16.875 việc/tháng (simulated) | +2.370 đ (simulated) | 5.784 đ (simulated) | 0,48× (simulated) |
 
-- Chi phí cố định có đổi kết luận không? Ở khối lượng nào? ...
+- Chi phí cố định có đổi kết luận không? Ở khối lượng nào? Không. Với chi phí biến đổi 3.414 đ/việc (simulated), tổng chi phí vẫn dưới 12.000 đ/việc ở cả 45.000 và 22.500 yêu cầu/tháng.
 
 ## B1 · Đổi từng yếu tố
 
