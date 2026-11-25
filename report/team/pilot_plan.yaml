@@ -19,7 +19,7 @@
 #   1. Đối chứng chạy cùng thời gian: Có, 20 nhân viên đối chứng chạy song song cùng tuần và cùng 12 depot với 20 nhân viên dùng trợ lý.
 #   2. Chia ngẫu nhiên hay do người chọn: Chia ngẫu nhiên bằng code với seed chốt trước, phân tầng theo 12 depot (tỉ lệ 50% can thiệp, 50% đối chứng).
 #   3. Ảnh hưởng gián tiếp và cách giảm: Có rủi ro nhân viên cùng depot chia sẻ gợi ý; giảm bằng khóa quyền truy cập trợ lý theo tài khoản staff_id và ghi log lượt mở cho cả 40 nhân viên.
-#   4. Chỉ số chính, ngưỡng, ngày quyết định đã viết trước: Có, chỉ số chính (baseline 70%, MDE 6 điểm), 3 luật dừng và ngày quyết định đều chốt trong file này trước ngày bắt đầu.
+#   4. Chỉ số chính, ngưỡng, ngày quyết định đã viết trước: Có, chỉ số chính (baseline 70%, MDE 6 điểm), 4 luật dừng và ngày quyết định đều chốt trong file này trước ngày bắt đầu.
 #   5. Ít nhất 20 cụm mỗi nhóm: Có, chia theo nhân viên đạt đúng 20 cụm mỗi nhóm (≥ 20 cụm; loại chia theo depot vì chỉ có 6 cụm/nhóm và trần hiệu dụng 300 < 1.251).
 #
 # Đánh đổi đã chấp nhận (nếu cách chia chưa đạt cả hai điều kiện):
@@ -48,11 +48,11 @@ pilot:
   identifiability:
     concurrent_control: "Có: 20 nhân viên đối chứng chạy song song cùng tuần và cùng 12 depot với 20 nhân viên dùng trợ lý"
     spillover_risk: "Có rủi ro nhân viên cùng depot chia sẻ gợi ý; giảm bằng khoá quyền truy cập trợ lý theo tài khoản staff_id và ghi log lượt mở cho cả 40 nhân viên"
-    predeclared: "Có: chỉ số chính, ngưỡng, ba luật dừng và ngày quyết định chốt trong file này trước ngày bắt đầu; chia nhóm ngẫu nhiên bằng code với seed ghi trước, phân tầng theo depot"
+    predeclared: "Có: chỉ số chính, ngưỡng, bốn luật dừng và ngày quyết định chốt trong file này trước ngày bắt đầu; chia nhóm ngẫu nhiên bằng code với seed ghi trước, phân tầng theo depot"
   stop_rules:
     - "NẾU có ít nhất 1 ca hoàn tiền hai lần cho cùng một đơn, hoặc thông báo đã hoàn nhưng sổ cái không ghi, hoặc tỉ lệ mở lại trong 7 ngày của nhóm dùng trợ lý vượt 6% TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt trợ lý trong 30 phút và chuyển mọi yêu cầu về luồng nhân viên tự làm KHÔNG THÌ không được sang bước rollout tiếp theo"
     - "NẾU từ bước 10 người trở đi, tỉ lệ mở lại trong 7 ngày của nhóm dùng trợ lý cao hơn nhóm đối chứng từ 2 điểm TRONG 1 tuần THÌ Giám đốc vận hành dừng mở rộng và Kỹ sư trưởng agent rà 20 trace trong 3 ngày KHÔNG THÌ không được lên bước 20 người (bước 4 người chưa đủ cụm nên không dùng luật lệch 2 điểm)"
-    - "NẾU chi phí mỗi việc thành công của toàn phạm vi pilot, chưa cộng tiền thuê cố định, vượt 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp về noi_dia và giới hạn 2 lần chạy KHÔNG THÌ không được mở hang_nang (tiền thuê cố định 40 triệu đ mỗi tháng không cộng vào ngưỡng này)"
+    - "NẾU chi phí mỗi việc thành công của toàn phạm vi pilot, vượt 8.000 đ (chưa cộng tiền thuê cố định) TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp về noi_dia và giới hạn 2 lần chạy KHÔNG THÌ không được mở hang_nang (tiền thuê cố định 40 triệu đ mỗi tháng không cộng vào ngưỡng này)"
     - "NẾU tỉ lệ bỏ qua gợi ý (sửa hoặc bỏ) vượt 40% TRONG 1 tuần (mốc chạy thử 27,12%) THÌ Trưởng nhóm CSKH phỏng vấn 5 nhân viên trong 3 ngày KHÔNG THÌ không được chuyển sang bước rollout tiếp theo"
   interim_looks: "chỉ kiểm tra chỉ số an toàn"
   rollback: "Giám đốc vận hành bấm cờ tắt, có hiệu lực trong 30 phút; mọi yêu cầu được xử lý bằng luồng nhân viên tự làm (6 phút, 12.000 đ mỗi yêu cầu)"
