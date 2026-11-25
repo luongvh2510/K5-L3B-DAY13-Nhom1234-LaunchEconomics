@@ -4,6 +4,8 @@ Không cần khoá API. Điền các chỗ ghi VIẾT Ở ĐÂY (đánh dấu TO
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
 import math
+from statistics import NormalDist
+
 import pandas as pd
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
@@ -181,6 +183,73 @@ def in_bang_b3(runs, reqs):
         )
 
 
+def co_mau_hai_ti_le(p1, p2, alpha, power):
+    """Cỡ mẫu mỗi nhóm, kiểm định hai phía, theo công thức của lab."""
+    z_alpha = NormalDist().inv_cdf(1 - alpha / 2)
+    z_power = NormalDist().inv_cdf(power)
+    p_trung_binh = (p1 + p2) / 2
+    tu_so = (
+        z_alpha * math.sqrt(2 * p_trung_binh * (1 - p_trung_binh))
+        + z_power * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))
+    ) ** 2
+    return math.ceil(tu_so / (p2 - p1) ** 2)
+
+
+def in_co_mau_d1():
+    """Tính năm phương án D1 từ tham số chung và hệ số thiết kế."""
+    p1, alpha, power, icc = 0.70, 0.05, 0.80, 0.02
+    n_5_diem = co_mau_hai_ti_le(p1, 0.75, alpha, power)
+    n_6_diem = co_mau_hai_ti_le(p1, 0.76, alpha, power)
+
+    don_moi_nguoi = 75
+    de_75 = 1 + (don_moi_nguoi - 1) * icc
+    n_theo_nhan_vien = math.ceil(n_5_diem * de_75)
+    nguoi_moi_nhom = math.ceil(n_theo_nhan_vien / don_moi_nguoi)
+    tong_nguoi = 2 * nguoi_moi_nhom
+    nhan_vien_hien_co = 40
+
+    so_nguoi_moi_nhom = 20
+    so_depot_moi_nhom = 6
+    tran_nhan_vien = so_nguoi_moi_nhom / icc
+    tran_depot = so_depot_moi_nhom / icc
+
+    # c*m / (1 + (m - 1)*ICC) >= n => m >= n*(1 - ICC)/(c - n*ICC).
+    m_6_diem = math.ceil(
+        n_6_diem * (1 - icc) / (so_nguoi_moi_nhom - n_6_diem * icc)
+    )
+    de_6_diem = 1 + (m_6_diem - 1) * icc
+    n_hieu_dung = so_nguoi_moi_nhom * m_6_diem / de_6_diem
+
+    n_5_hien_thi = f"{n_5_diem:,}".replace(",", ".")
+    n_nhan_vien_hien_thi = f"{n_theo_nhan_vien:,}".replace(",", ".")
+    tran_nhan_vien_hien_thi = f"{tran_nhan_vien:,.0f}".replace(",", ".")
+    de_75_hien_thi = f"{de_75:.2f}".replace(".", ",")
+    de_6_hien_thi = f"{de_6_diem:.2f}".replace(".", ",")
+    hieu_dung_hien_thi = f"{n_hieu_dung:.2f}".replace(".", ",")
+
+    print("\n## D1 · Cỡ mẫu\n")
+    print("Tham số: p1 = 0,70; alpha = 0,05; power = 0,80; ICC = 0,02; hai phía.")
+    print(f"a) Theo yêu cầu, p2 = 0,75: {n_5_hien_thi} đơn mỗi nhóm.")
+    print(
+        f"b) Theo nhân viên, m = {don_moi_nguoi}: DE = {de_75_hien_thi}; "
+        f"{n_nhan_vien_hien_thi} đơn mỗi nhóm; {nguoi_moi_nhom} người mỗi bên; "
+        f"tổng {tong_nguoi} > {nhan_vien_hien_co} nhân viên hiện có: không đủ."
+    )
+    print(
+        f"c) {so_nguoi_moi_nhom} người mỗi bên: trần cỡ mẫu hiệu dụng c/ICC = "
+        f"{tran_nhan_vien_hien_thi} < {n_5_hien_thi}: không đủ dù tăng m."
+    )
+    print(
+        f"d) {so_depot_moi_nhom} depot mỗi bên: trần cỡ mẫu hiệu dụng c/ICC = "
+        f"{tran_depot:.0f} < {n_5_hien_thi}: không đủ dù tăng m."
+    )
+    print(
+        f"e) p2 = 0,76 (+6 điểm), {so_nguoi_moi_nhom} người mỗi bên: "
+        f"cần {n_6_diem} đơn hiệu dụng mỗi nhóm; m nhỏ nhất = {m_6_diem} đơn/người; "
+        f"DE = {de_6_hien_thi}; n hiệu dụng = {hieu_dung_hien_thi} >= {n_6_diem}."
+    )
+
+
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
@@ -188,9 +257,6 @@ if __name__ == '__main__':
     ket_qua = mo_hinh(runs, reqs)
     in_bang_a2(runs, reqs, ket_qua)
     # TODO CP1 · Nhiệm vụ A3: tính lại theo từng giá trị của cột loai.
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
 
 
     for loai, reqs_loai in reqs.groupby("loai"):
@@ -210,3 +276,5 @@ if __name__ == '__main__':
     print(runs_quoc_te.groupby("attempt")["ok"].agg(["sum", "count", "mean"]))
     in_bang_b1(runs, reqs, ket_qua["cps"])
     in_bang_b3(runs, reqs)
+    # CP4 · Nhiệm vụ D: cỡ mẫu.
+    in_co_mau_d1()
