@@ -46,8 +46,8 @@ Cách phát hiện phải đo được (event, ngưỡng, tần suất). Ngườ
 
 | Ca | Loại lỗi | Phát hiện bằng gì | Khắc phục thế nào | Ai phụ trách |
 | --: | --- | --- | --- | --- |
-| ... | Do người dùng | ... | ... | ... |
-| ... | Hệ thống | ... | ... | ... |
-| ... | Ngữ cảnh | ... | ... | ... |
-| ... | Giới hạn hệ thống | ... | ... | ... |
-| ... | Ngầm | ... | ... | ... |
+| 14 | Do người dùng | Mỗi ngày tính tỉ lệ yêu cầu đóng bằng "Xác nhận đã nhận tiền" mà không có `refund_ledger_write` ok cùng `trace_id`, trên tổng yêu cầu đóng trong ngày; cảnh báo khi vượt 0,5% | Thêm bước xác nhận hiện trạng tiền trước khi đóng ("Tiền chưa về, vẫn xác nhận?") và cho mở lại yêu cầu trong 7 ngày | PM trợ lý hoàn phí |
+| 15 | Hệ thống | Mỗi tuần đếm `staff_review_decision` = sửa với lý do sai tỉ lệ hoàn; cảnh báo khi vượt 3% gợi ý được xem lại | Thêm cổng kiểm tra tỉ lệ hoàn theo số giờ trễ (24–48 giờ = 50%) trước khi hiện gợi ý; gợi ý không khớp bảng chính sách thì chuyển nhân viên | Kỹ sư trưởng agent |
+| 16 | Ngữ cảnh | Đếm thông báo hoàn tiền gửi trong khung 22:00–06:00 theo ngày; cảnh báo khi vượt 1% tổng thông báo hoặc có từ 3 phản ánh về thông báo ngoài giờ trong một tuần | Hẹn giờ gửi thông báo trong khung 07:00–21:00, thông báo phát sinh ban đêm giữ lại gửi sáng hôm sau | PM trợ lý hoàn phí |
+| 11 | Giới hạn hệ thống | Đếm `handoff_to_staff` với lý do đầu vào không hỗ trợ (âm thanh) theo ngày; cảnh báo khi vượt 5% số yêu cầu | Chuyển ngay cho nhân viên kèm tóm tắt thay vì yêu cầu khách nhập lại; ghi nhận loại đầu vào để cân nhắc hỗ trợ giọng nói ở giai đoạn sau | Trưởng nhóm CSKH |
+| 5 | Ngầm | Kiểm tra mẫu hằng tuần 150 đơn có mã giảm giá, so số hoàn với giá sau giảm (`audit_sample_checked`); cảnh báo khi có từ 1 đơn lệch trở lên. Cỡ mẫu 150 chọn để bắt được lỗi từ 2% với xác suất 95% | Tính hoàn theo giá sau giảm trong bản ghi đơn; thêm kiểm thử cho đơn có mã giảm giá và ghi giá tính hoàn vào trace | Kế toán trưởng |
