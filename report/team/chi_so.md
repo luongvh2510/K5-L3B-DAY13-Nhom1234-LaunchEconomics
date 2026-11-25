@@ -7,8 +7,8 @@
 | Chính (kết quả) | % yêu cầu đóng trong 24 giờ và không mở lại trong 7 ngày | `dong_trong_24h` bằng 1 và `mo_lai_trong_7_ngay` bằng 0, chia tổng số yêu cầu | ... |
 | Dùng | Tỉ lệ bỏ qua gợi ý | `quyet_dinh_xem_lai` là `sua` hoặc `bo`, chia số yêu cầu được xem lại | ... |
 | An toàn | Tỉ lệ lỗi lọt đến khách | `mo_lai_trong_7_ngay` bằng 1, chia tổng số yêu cầu | ... |
-| Dùng | Nhóm tự đề xuất: ... | ... | Không cần tính |
-| An toàn | Nhóm tự đề xuất: ... | ... | Không cần tính |
+| Dùng | Nhóm tự đề xuất: Thời gian xem lại trung vị mỗi yêu cầu (phút/ca) | `median(review_duration_sec) ÷ 60` trên các yêu cầu có xem lại (`agent_ui.review_submitted`) | Không cần tính |
+| An toàn | Nhóm tự đề xuất: Tỉ lệ sai lệch đối soát sổ cái và hoàn trùng | Số lệnh hoàn có (`customer_notified = true` và `ledger_status ≠ ok`) hoặc (`payout_count > 1`), chia tổng số lệnh chi hoàn | Không cần tính |
 
 Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý đã nâng chỉ số": đợt chạy thử không có nhóm đối chứng.
 
@@ -18,16 +18,22 @@ Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý 
 
 | Event | Ai tạo | Thuộc tính chính | Thời điểm |
 | --- | --- | --- | --- |
-| ... | ... | ..., trace_id | ... |
-| ... | ... | ..., trace_id | ... |
-| ... | ... | ..., trace_id | ... |
-| ... | ... | ..., trace_id | ... |
-| ... | ... | ..., trace_id | ... |
-| ... | ... | ..., trace_id | ... |
+| `claim.submitted` | Cổng CSKH / App khách | `request_id`, `depot`, `loai`, `so_tien_vnd`, `pilot_group`, `created_at`, `trace_id` | Khi khách gửi yêu cầu hoàn phí mới |
+| `assistant.attempt_finished` | Dịch vụ trợ lý hoàn phí | `request_id`, `attempt`, `tokens_in`, `tokens_out`, `tool_calls`, `status`, `policy_version`, `trace_id` | Ngay sau mỗi lần chạy trợ lý (kể cả khi `loi`) |
+| `assistant.escalated` | Dịch vụ trợ lý hoàn phí | `request_id`, `escalation_reason`, `attempt_count`, `trace_id` | Khi trợ lý dừng và chuyển hồ sơ cho nhân viên |
+| `agent_ui.review_submitted` | Màn hình CSKH | `request_id`, `staff_id`, `quyet_dinh` (`giu`/`sua`/`bo`), `review_duration_sec`, `trace_id` | Khi nhân viên xem gợi ý xong và bấm xác nhận |
+| `agent_ui.rework_logged` | Màn hình CSKH | `request_id`, `staff_id`, `rework_duration_sec`, `error_tag`, `trace_id` | Khi nhân viên hoàn tất xử lý lại một ca sai |
+| `payout.ledger_reconciled` | Dịch vụ thanh toán / Kế toán | `request_id`, `idempotency_key`, `ledger_status`, `customer_notified`, `payout_count`, `trace_id` | Khi ghi sổ cái hoàn tiền và đối soát với thông báo gửi khách |
+| `claim.resolved` | Hệ thống quản lý phiếu | `request_id`, `resolved_at`, `resolution_channel`, `trace_id` | Khi phiếu hoàn phí được đóng |
+| `claim.reopened` | Cổng CSKH / App khách | `request_id`, `reopened_at`, `reopen_reason`, `days_since_close`, `trace_id` | Khi phiếu đã đóng bị mở lại |
 
 **Kiểm tra chéo:** với mỗi chỉ số ở bảng E1, ghi event dùng để tính. Chỉ số nào không tính được từ danh sách event thì chưa đo được.
 
-- ...
+- **Chỉ số chính (`% yêu cầu đóng trong 24 giờ và không mở lại trong 7 ngày`)**: ghép qua `trace_id` giữa `claim.submitted` (`created_at`, mẫu số), `claim.resolved` (`resolved_at − created_at ≤ 24h`) và không phát sinh `claim.reopened` với `days_since_close ≤ 7`.
+- **Chỉ số dùng 1 (`Tỉ lệ bỏ qua gợi ý`)**: đếm `agent_ui.review_submitted` có `quyet_dinh` là `sua` hoặc `bo`, chia tổng số `agent_ui.review_submitted`.
+- **Chỉ số an toàn 1 (`Tỉ lệ lỗi lọt đến khách`)**: đếm `claim.reopened` có `days_since_close ≤ 7`, chia tổng số `claim.submitted`.
+- **Chỉ số dùng 2 (tự đề xuất — `Thời gian xem lại trung vị mỗi yêu cầu`)**: tính `median(review_duration_sec) ÷ 60` từ `agent_ui.review_submitted` (đồng thời cùng `agent_ui.rework_logged` dùng đo thật để thay thế 2 cột `_simulated` từ tuần 1 pilot).
+- **Chỉ số an toàn 2 (tự đề xuất — `Tỉ lệ sai lệch đối soát sổ cái và hoàn trùng`)**: đếm `payout.ledger_reconciled` có (`customer_notified = true` và `ledger_status ≠ ok`) hoặc (`payout_count > 1`), chia tổng số `payout.ledger_reconciled`.
 
 ## E2 · Rủi ro kinh tế
 
