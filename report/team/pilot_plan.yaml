@@ -3,11 +3,17 @@
 # Kiểm tra đọc được: python -c "import yaml; yaml.safe_load(open('../report/team/pilot_plan.yaml'))"
 #
 # D1 · Cỡ mẫu (baseline 0,70; mục tiêu +5 điểm; alpha 0,05; power 0,8; ICC 0,02)
-#   a) Chia theo yêu cầu:
-#   b) Theo nhân viên, m = 75:
-#   c) 20 nhân viên mỗi nhóm:
-#   d) 6 depot mỗi nhóm:
-#   e) Mức chênh 6 điểm (859 mỗi nhóm), 20 nhân viên mỗi nhóm:
+#   Dùng công thức hai tỉ lệ, kiểm định hai phía, z chính xác; làm tròn cỡ mẫu lên.
+#   a) Chia theo yêu cầu: p2 = 0,75; cần 1.251 đơn mỗi nhóm.
+#   b) Theo nhân viên, m = 75: DE = 1 + (75 - 1) × 0,02 = 2,48;
+#      ceil(1.251 × 2,48) = 3.103 đơn mỗi nhóm; ceil(3.103/75) = 42 người mỗi bên;
+#      tổng 84 > 40 nhân viên hiện có, không đủ người.
+#   c) 20 nhân viên mỗi nhóm: trần n hiệu dụng = c/ICC = 1.000 < 1.251;
+#      không đủ cho mức chênh 5 điểm dù tăng số đơn mỗi người.
+#   d) 6 depot mỗi nhóm: trần n hiệu dụng = c/ICC = 300 < 1.251, không đủ.
+#   e) Mức chênh 6 điểm: p2 = 0,76; cần 859 đơn hiệu dụng mỗi nhóm, 20 người mỗi bên.
+#      m >= 859 × (1 - 0,02)/(20 - 859 × 0,02) = 298,52 -> m nhỏ nhất = 299 đơn/người.
+#      DE = 1 + (299 - 1) × 0,02 = 6,96; n hiệu dụng = 20 × 299/6,96 = 859,20 >= 859.
 #
 # D2 · Năm câu kiểm tra "tách được tác động" với cách chia đã chọn (mỗi câu một dòng):
 #   1. Đối chứng chạy cùng thời gian:
