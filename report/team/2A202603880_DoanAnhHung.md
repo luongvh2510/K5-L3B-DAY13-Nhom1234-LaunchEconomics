@@ -33,7 +33,8 @@
 - Commit `0ea6022`: điền 20 nhãn độc lập cột `Nhãn người 1` vào [bang_loi.md](./bang_loi.md).
 - Commit `ec1b608`: hoàn thiện 2 chỉ số tự đề xuất, 8 event có `trace_id` và kiểm tra chéo trong [chi_so.md](./chi_so.md).
 - Commit `d088139`: hoàn thiện phiếu chấm Gate 2a (30/30, *Go có điều kiện*) cho Nhóm 101 trong [phieu_cham.md](./phieu_cham.md).
-- Cập nhật phần chú thích D2, đánh đổi MDE 6 điểm và tỉ lệ mở lại (`4,25%` toàn mẫu / `3,97%` phạm vi pilot) trong [pilot_plan.yaml](./pilot_plan.yaml) (commit hoàn thiện TV3-10 và báo cáo cá nhân này).
+- Commit `493d3e1`: cập nhật phần chú thích D2, đánh đổi MDE 6 điểm và tỉ lệ mở lại (`4,25%` toàn mẫu / `3,97%` phạm vi pilot) trong [pilot_plan.yaml](./pilot_plan.yaml) và tạo báo cáo cá nhân này.
+- Cập nhật mục đóng góp cá nhân `DoanAnhHung-2A202603880` trong [TEAM.md](../../TEAM.md).
 - Báo cáo cá nhân: `report/team/2A202603880_DoanAnhHung.md`.
 
 ## 5. Công cụ AI đã dùng
@@ -50,5 +51,5 @@
 
 ## 6. Tự đánh giá
 
-- Hoàn thành đầy đủ các đầu việc được phân công (`TV3-01` đến `TV3-10`) đúng tiến độ, phối hợp Git gọn gàng và không gây xung đột nhánh với 3 thành viên còn lại.
-- Điểm cần tiếp tục theo dõi sau buổi học: bổ sung phần ghi lại câu trả lời của Nhóm 101 vào dòng cuối [phieu_cham.md](./phieu_cham.md) nếu có trao đổi Q&A trực tiếp, và cùng nhóm xác nhận file [pilot_plan.yaml](./pilot_plan.yaml) không còn dấu `?` và đọc được bằng `yaml.safe_load` sau khi TV4 điền xong phần D3.
+- Hoàn thành đầy đủ các đầu việc được phân công (`TV3-01` đến `TV3-10`) đúng tiến độ, phối hợp Git gọn gàng và không gây xung đột nhánh với 3 thành viên còn lại; toàn bộ [pilot_plan.yaml](./pilot_plan.yaml) đã được TV4 hoàn thiện phần D3 trên `main` không còn dấu `?`.
+- Điểm tồn đọng duy nhất: dòng cuối [phieu_cham.md](./phieu_cham.md) chưa có phần ghi lại câu trả lời Q&A trực tiếp của Nhóm 101 tại buổi.
