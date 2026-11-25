@@ -6,37 +6,37 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 | Phép thử (p = 0,8) | Kết quả của nhóm |
 | --- | --- |
-| Số lần chạy trung bình, tối đa 2 lần | ... |
-| Số lần chạy trung bình, chạy đến khi đúng | ... |
-| Hệ số chi phí mỗi việc thành công, tối đa 3 lần | ... |
+| Số lần chạy trung bình, tối đa 2 lần | 1,20 lần |
+| Số lần chạy trung bình, chạy đến khi đúng | 1,25 lần |
+| Hệ số chi phí mỗi việc thành công, tối đa 3 lần | 1,25× giá một lần chạy |
 
 ## A2 · Mô hình chi phí từ trace
 
-| Khoản | Số tiền (đ) | Nguồn | Nhãn |
+| Khoản | Giá trị | Nguồn hoặc cách tính | Nhãn |
 | --- | ---: | --- | --- |
-| Token | ... | `logix_runs.csv` | đo từ trace |
-| Tool | ... | `logix_runs.csv` | đo từ trace |
-| Trong đó, phần của lần chạy thứ 2 và 3 | ... | attempt lớn hơn 1 | đo từ trace |
-| Xem lại | ... | `phut_xem_lai_simulated` | simulated |
-| Làm lại | ... | `phut_lam_lai_simulated` | simulated |
-| Tổng chi phí | ... | | |
-| Số việc thành công | ... | `ket_qua` | |
-| Chi phí mỗi việc thành công | ... | | |
-| Hoá đơn token và tool chia cho số yêu cầu | ... | | |
+| Token | 245.585 đ | `logix_runs.csv` | đo từ trace |
+| Tool | 84.000 đ | `logix_runs.csv` | đo từ trace |
+| Trong đó, phần của lần chạy thứ 2 và 3 | 93.804 đ | `attempt` là 2 hoặc 3 | đo từ trace |
+| Xem lại | 1.780.000 đ | `phut_xem_lai_simulated` | simulated |
+| Làm lại | 2.264.000 đ | `phut_lam_lai_simulated` | simulated |
+| Tổng chi phí | 4.373.585 đ | Token + tool + xem lại + làm lại | simulated |
+| Số việc thành công | 978 việc | `ket_qua == 'thanh_cong'` | |
+| Chi phí mỗi việc thành công | 4.472 đ/việc | Tổng chi phí / số việc thành công | simulated |
+| Hoá đơn token và tool chia cho số yêu cầu | 274,7 đ/yêu cầu | `logix_runs.csv` và `logix_requests.csv` | đo từ trace |
 
-- Chi phí mỗi việc thành công gấp bao nhiêu lần "hoá đơn chia số yêu cầu"? ...
-- Khoản nào chiếm tỉ trọng lớn nhất trong tổng chi phí, bao nhiêu phần trăm? ...
+- Chi phí mỗi việc thành công gấp 16,3 lần hoá đơn token và tool trên mỗi yêu cầu (simulated).
+- Làm lại chiếm tỷ trọng lớn nhất, 51,8% tổng chi phí (simulated).
 
 ## A3 · Tách theo loại yêu cầu
 
-| Loại | Số yêu cầu | Tỉ lệ thành công | Số lần chạy mỗi yêu cầu | Chi phí mỗi việc thành công | So với 12.000 đ |
+| Loại | Số yêu cầu | Tỉ lệ thành công | Số lần chạy mỗi yêu cầu | Chi phí mỗi việc thành công (simulated) | So với 12.000 đ (simulated) |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| noi_dia | ... | ... | ... | ... | ... |
-| hang_nang | ... | ... | ... | ... | ... |
-| quoc_te | ... | ... | ... | ... | ... |
-| doi_tac | ... | ... | ... | ... | ... |
+| `noi_dia` | 824 | 95,0% | 1,11 | 2.696 đ | 0,22× |
+| `hang_nang` | 158 | 74,1% | 1,47 | 8.221 đ | 0,69× |
+| `quoc_te` | 150 | 27,3% | 2,32 | 22.515 đ | 1,88× |
+| `doi_tac` | 68 | 54,4% | 1,88 | 10.215 đ | 0,85× |
 
-- Loại nào không đáng để trợ lý xử lý? Với loại đó, cho chạy lại tới 3 lần có giúp không? ...
+- `quoc_te` không đáng đưa vào pilot vì chi phí 22.515 đ/việc thành công, gấp 1,88× mốc 12.000 đ (simulated). Chạy lại mang lại ít lợi ích: tỉ lệ lượt chạy có trạng thái `ok` giảm từ 30,0% ở lượt 1 xuống 11,4% ở lượt 2 và 2,2% (2/93) ở lượt 3.
 
 ## A4 · Chi phí cố định (phạm vi noi_dia + hang_nang)
 
@@ -49,17 +49,19 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 ## B1 · Đổi từng yếu tố
 
-| Kịch bản | Cách tính | Chi phí mỗi việc thành công | Thay đổi (%) |
+So với chi phí gốc A2 là 4.472 đ/việc thành công (simulated). Tỉ lệ thay đổi được tính trước khi làm tròn chi phí.
+
+| Kịch bản | Cách tính | Chi phí mỗi việc thành công (simulated) | Thay đổi (simulated) |
 | --- | --- | ---: | ---: |
-| Giá token gấp đôi | 52 đ và 260 đ cho 1.000 token; giá tool giữ nguyên | ... | ... |
-| Giá token giảm một nửa | 13 đ và 65 đ | ... | ... |
-| Tỉ lệ xem lại gấp đôi | Tiền xem lại × 2 | ... | ... |
-| Tỉ lệ xem lại giảm một nửa | Tiền xem lại ÷ 2 | ... | ... |
-| Số ca làm lại gấp đôi | Tiền làm lại × 2 | ... | ... |
-| Số ca làm lại giảm một nửa | Tiền làm lại ÷ 2 | ... | ... |
-| Lương nhân viên tăng 25% | 2.500 đ mỗi phút | ... | ... |
-| Chỉ cho chạy tối đa 2 lần | Bỏ lần chạy có attempt > 2; yêu cầu có so_lan_chay > 2 coi là chuyen_nhan_vien | ... | ... |
-| Chỉ cho chạy 1 lần | Như trên với giới hạn 1 | ... | ... |
+| Giá token gấp đôi | 52 đ và 260 đ cho 1.000 token; giá tool giữ nguyên | 4.723 đ | +5,6% |
+| Giá token giảm một nửa | 13 đ và 65 đ | 4.346 đ | −2,8% |
+| Tỉ lệ xem lại gấp đôi | Tiền xem lại × 2 | 6.292 đ | +40,7% |
+| Tỉ lệ xem lại giảm một nửa | Tiền xem lại ÷ 2 | 3.562 đ | −20,3% |
+| Số ca làm lại gấp đôi | Tiền làm lại × 2 | 6.787 đ | +51,8% |
+| Số ca làm lại giảm một nửa | Tiền làm lại ÷ 2 | 3.315 đ | −25,9% |
+| Lương nhân viên tăng 25% | 2.500 đ mỗi phút | 5.506 đ | +23,1% |
+| Chỉ cho chạy tối đa 2 lần | Bỏ lượt có `attempt > 2`. Yêu cầu có `so_lan_chay > 2` chuyển cho nhân viên, tính 0 phút xem lại và làm lại trong chi phí trợ lý. | 4.237 đ | −5,2% |
+| Chỉ cho chạy 1 lần | Áp dụng cùng quy tắc với giới hạn 1 | 4.111 đ | −8,1% |
 
 ## B2 · Đổi một cặp và xếp hạng
 
@@ -68,13 +70,15 @@ Số tính bằng `src/lab13.py`. Mọi con số tính từ cột `_simulated` g
 
 ## B3 · Giới hạn chạy lại có thật sự rẻ hơn
 
-| Giới hạn | Tổng chi phí trợ lý | Số yêu cầu không thành công | Chi phí cả hệ thống | Chi phí mỗi việc thành công |
-| --- | ---: | ---: | ---: | ---: |
-| 1 lần | ... | ... | ... | ... |
-| 2 lần | ... | ... | ... | ... |
-| 3 lần | ... | ... | ... | ... |
+Chi phí cả hệ thống = tổng chi phí trợ lý + 12.000 đ × số yêu cầu không thành công.
 
-- Giới hạn nào rẻ nhất cho công ty? Có trùng với giới hạn cho chi phí mỗi việc thành công thấp nhất không? ...
+| Giới hạn | Tổng chi phí trợ lý (simulated) | Số yêu cầu không thành công | Chi phí cả hệ thống (simulated) | Chi phí mỗi việc thành công (simulated) |
+| --- | ---: | ---: | ---: | ---: |
+| 1 lần | 3.621.781 đ | 319 | 7.449.781 đ | 4.111 đ |
+| 2 lần | 4.093.220 đ | 234 | 6.901.220 đ | 4.237 đ |
+| 3 lần | 4.373.585 đ | 222 | 7.037.585 đ | 4.472 đ |
+
+- Giới hạn 2 lần rẻ nhất cho cả hệ thống (6.901.220 đ, simulated). Giới hạn 1 lần có chi phí mỗi việc thành công thấp nhất (4.111 đ, simulated), đồng thời để lại thêm 85 yêu cầu cho nhân viên so với giới hạn 2 lần.
 
 ## B4 · Nếu phải xem lại tất cả
 
