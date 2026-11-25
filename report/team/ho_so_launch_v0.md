@@ -14,6 +14,12 @@ Nhóm: Nhom1234 · Lớp: L3B
 | 6 · Pilot plan | Chia theo nhân viên, 20 người dùng trợ lý và 20 người đối chứng, bốc thăm ngẫu nhiên cùng tuần; phạm vi `noi_dia` + `hang_nang` (A3, simulated). Cỡ mẫu: 299 đơn mỗi người, 859 đơn hiệu dụng mỗi nhóm (hệ số thiết kế 6,96), thấy được mức hơn 6 điểm; nếu tác động thật chỉ 5 điểm thì power còn khoảng 0,64. 4 luật dừng có ngưỡng và người có quyền dừng (mở lại vượt 6%, lệch đối chứng 2 điểm từ bước 10 người, chi phí vượt 8.000 đ, bỏ qua gợi ý vượt 40%). Ngày quyết định 2027-01-14 (giả định bắt đầu 2026-12-14). Chi tiết: `pilot_plan.yaml` | Giả lập | Giám đốc vận hành |
 | 7 · Rủi ro kinh tế | Hai rủi ro [simulated], số lấy từ bảng độ nhạy: (1) số ca làm lại gấp đôi: 6.787 đ/việc (+51,8%), theo dõi khi tỉ lệ làm lại vượt 7% mỗi tuần (mốc chạy thử 48/982 = 4,9%); (2) phải xem lại gần như toàn bộ: 11.743 đ/việc (0,98× của 12.000 đ) đến 12.415 đ/việc (1,03×), theo dõi khi hơn 50% yêu cầu vẫn cần xem lại ở cuối bước 25%. Chi tiết: `chi_so.md` | Giả lập | PM trợ lý hoàn phí (rủi ro 1), Trưởng nhóm CSKH (rủi ro 2) |
 
-**Đề xuất:** Go · Go có điều kiện · No-go (giữ một). Go có điều kiện: ghi từng điều kiện, người phụ trách, ngày kiểm tra. No-go: ghi việc phải làm để quay lại cổng.
+**Đề xuất: Go có điều kiện** cho pilot `noi_dia` + `hang_nang`. Cơ sở: chi phí mỗi việc thành công 4.472 đ, thấp hơn 12.000 đ nhân viên tự làm, và chi phí cả hệ thống khoảng 0,49× (simulated). Số bất lợi: xem lại 100% đẩy chi phí lên 11.743–12.415 đ, tức 0,98–1,03× (simulated); power chỉ khoảng 0,64 nếu tác động thật là 5 điểm; với 4 người dùng thì 40 triệu đ tiền thuê cố định kéo chi phí lên khoảng 15.300 đ. Gate 2a chỉ duyệt kế hoạch pilot. Các mốc ngày dưới đây tính từ ngày bắt đầu giả định 2026-12-14.
 
-- ...
+| Điều kiện | Người phụ trách | Ngày kiểm tra |
+| --- | --- | --- |
+| Chặn hoàn trùng bằng khoá chống trùng và đối soát sổ cái hằng giờ trước khi bắt đầu (luật dừng 1) | Kỹ sư trưởng agent | 2026-12-13 |
+| Ký chấp nhận mức chênh 6 điểm và power khoảng 0,64 ở mức 5 điểm | Giám đốc vận hành | 2026-12-13 |
+| Bật đủ 8 event có `trace_id`; sau tuần 1 thay phút xem lại và làm lại simulated bằng phút đo thật rồi tính lại chi phí | PM trợ lý hoàn phí | 2026-12-21 |
+| Có kế hoạch giảm xem lại theo bậc, vì xem lại 100% không còn tiết kiệm; giảm khi tỉ lệ sửa hoặc bỏ gợi ý dưới 15% | Trưởng nhóm CSKH | 2026-12-27 |
+| Xem lại hợp đồng chi phí cố định 40 triệu đ mỗi tháng nếu số việc thành công mỗi tuần dưới 50% kế hoạch | PM trợ lý hoàn phí | 2026-12-27 |
